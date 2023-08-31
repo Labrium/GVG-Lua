@@ -1,7 +1,7 @@
 # GVG: The next generation of vector graphics
 An implementation of the GVG image file format specification, for use with the Love2D framework.
 
-# Features
+## Features
  - [x] Mathematically perfect rasterization on the GPU
  - [x] Modular shape type system
  - [x] Modular bounding box function system
@@ -54,7 +54,7 @@ An implementation of the GVG image file format specification, for use with the L
    - [ ] Shape morphing
    - [ ] Transitions
 
-# TODO
+## TODO
  - [x] Allow multiple parents per element
  - [ ] Allow DPI scaled units
  - [x] Migrate bounding functions to vertex shader bounding meshes
