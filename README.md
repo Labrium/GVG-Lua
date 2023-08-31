@@ -1,6 +1,54 @@
 # GVG: The next generation of vector graphics
 An implementation of the GVG image file format specification, for use with the Love2D framework.
 
+Special thanks to (Ingio Quilez)[https://iquilezles.org/] for almost all of the shape functions (https://iquilezles.org/articles/distfunctions2d/).
+
+## Supported Shapes
+ - [x] Arc
+ - [x] Circle
+ - [x] Dot grid
+ - [x] Equilateral triangle
+ - [x] Grid
+ - [x] Hexagon
+ - [x] Line
+ - [x] N-gon
+ - [x] N-Star
+ - [x] Pentagon
+ - [x] Rectangle
+ - [x] Strip
+ - [x] Trapezoid
+ - [x] Triangle
+ - [ ] Quadratic bezier
+ - [ ] Quadratic bezier segment
+ - [ ] Box
+ - [ ] Cross
+ - [ ] Cut disc
+ - [ ] Edge
+ - [ ] Egg
+ - [ ] Ellipse
+ - [ ] Heart
+ - [ ] Hexagram
+ - [ ] Horseshoe
+ - [ ] Hyperbola
+ - [ ] Isosceles triangle
+ - [ ] Moon
+ - [ ] Octagon
+ - [ ] Oriented box
+ - [ ] Parabola
+ - [ ] Parabolic segment
+ - [ ] Parallelogram
+ - [ ] Pie
+ - [ ] Polygon
+ - [ ] Quadratic circle
+ - [ ] Rhombus
+ - [ ] Rounded box
+ - [ ] Rounded cross
+ - [ ] Rounded X
+ - [ ] Star
+ - [ ] Star 5
+ - [ ] Uneven capsule
+ - [ ] Vesica
+
 ## Features
  - [x] Mathematically perfect rasterization on the GPU
  - [x] Modular shape type system
@@ -104,6 +152,6 @@ An implementation of the GVG image file format specification, for use with the L
 &nbsp;
 
 # License
-[GVG](https://github.com/Labrium/GVG) &copy; 2023 by [Labrium](https://github.com/Labrium) is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0).
+[GVG-Lua](https://github.com/Labrium/GVG-Lua) &copy; 2023 by [Labrium](https://github.com/Labrium) is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0).
 
 [![licensebuttons by-nc-sa](https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/4.0)
