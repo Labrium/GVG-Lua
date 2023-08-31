@@ -5,6 +5,11 @@ GVG Specification: https://github.com/Labrium/GVG/
 
 **NOTE: This implementation is in the beta development stage right now, so expect breaking changes. Documentation will be available soon.**
 
+## Dependencies
+ - [30log](https://github.com/Yonaba/30log/blob/master/30log.lua)
+ - [uuid](https://github.com/Tieske/uuid/blob/master/src/uuid.lua)
+ - [dkjson](https://github.com/LuaDist/dkjson/blob/master/dkjson.lua)
+
 ## Supported Shapes
  - [x] Arc
  - [x] Circle
