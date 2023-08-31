@@ -1,5 +1,9 @@
 # GVG: The next generation of vector graphics
-An implementation of the GVG image file format specification, for use with the Love2D framework.
+An implementation of the GVG image file format specification, for use with the Löve2D framework.
+
+GVG Specification: https://github.com/Labrium/GVG/
+
+**NOTE: This implementation is in the beta development stage right now, so expect breaking changes. Documentation will be available soon.**
 
 ## Supported Shapes
  - [x] Arc
