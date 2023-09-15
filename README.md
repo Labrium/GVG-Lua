@@ -10,6 +10,40 @@ GVG Specification: https://github.com/Labrium/GVG/
  - [uuid](https://github.com/Tieske/uuid/blob/master/src/uuid.lua)
  - [dkjson](https://github.com/LuaDist/dkjson/blob/master/dkjson.lua)
 
+## Usage
+```lua
+
+local GVG = require("GVG")
+
+local world
+local player
+
+function love.load()
+	-- initialize GVG
+	GVG.init("baseF.glsl", "baseV.glsl")
+	GVG.loadShapesFromDirectory("Shapes")
+	GVG.loadHullsFromDirectory("Hulls")
+
+	world = GVG.Group()
+
+	player = GVG.Shape("circle") -- "circle" shape type is made available from "/Shapes/circle.glsl"
+	player.uniforms.radius = {10}
+
+	world:add(player)
+end
+
+function love.update(dt)
+	-- do whatever
+	player.x = player.x + 1
+	player.y = player.y + 1
+end
+
+function love.draw()
+	world:draw()
+end
+
+```
+
 ## Supported Shapes
  - [x] Arc
  - [x] Circle
@@ -164,4 +198,10 @@ GVG Specification: https://github.com/Labrium/GVG/
 
 [![licensebuttons by-nc-sa](https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/4.0)
 
-Special thanks to Ingio Quilez for almost all of the shape functions (https://iquilezles.org/articles/distfunctions2d/).
+<details>
+<summary>Shape type [SDF functions](https://iquilezles.org/articles/distfunctions2d/) (in Shapes directory) are licensed under The MIT License.</summary>
+
+Copyright © 2020-2023 Inigo Quilez
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</details>
