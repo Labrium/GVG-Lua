@@ -3,7 +3,7 @@ An implementation of the GVG image file format specification, for use with the L
 
 GVG Specification: https://github.com/Labrium/GVG/
 
-**NOTE: This implementation is in the beta development stage right now, so expect breaking changes. Documentation will be available soon.**
+**NOTE: This implementation is in the alpha development stage right now, so expect breaking changes. Documentation will be available soon.**
 
 ## Dependencies
  - [30log](https://github.com/Yonaba/30log/blob/master/30log.lua)
@@ -194,7 +194,7 @@ end
 
 ## Projects Using GVG-Lua
 
- - [Hoog.io](https://github.com/CurbaiCode/Hoog.io/)
+ - [Hoog.io](https://github.com/CurbaiCode/Hoog.io)
 
 &nbsp;
 
