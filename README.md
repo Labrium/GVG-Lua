@@ -198,8 +198,9 @@ end
 
 [![licensebuttons by-nc-sa](https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/4.0)
 
+Shape type [SDF functions](https://iquilezles.org/articles/distfunctions2d/) (in Shapes directory) are licensed under:
 <details>
-<summary>Shape type [SDF functions](https://iquilezles.org/articles/distfunctions2d/) (in Shapes directory) are licensed under The MIT License.</summary>
+<summary>The MIT License</summary>
 
 Copyright © 2020-2023 Inigo Quilez
 
