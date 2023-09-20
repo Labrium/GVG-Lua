@@ -24,7 +24,7 @@ vec2 rotateByVec(vec2 a, vec2 b) {
 
 vec4 position(mat4 tp, vec4 vp) {
 	vec4 vf = vf/*NAME*/(vp.xy, VertexOffset.xy/*PARAMETERS*/);
-	vec2 nvp = vf.xy * scl + vf.zw * (1 + (stroke * scl * 0.5 + offset * scl));
+	vec2 nvp = vf.xy * scl + vf.zw * (1 + (stroke * 0.5 + offset * scl));
 	VaryingTexCoord = vec4(nvp, 0.0, 1.0);
 	nvp = rotate(nvp, rot);
 	return vec4((nvp + pos) / love_ScreenSize.xy, 0.0, 0.5);
