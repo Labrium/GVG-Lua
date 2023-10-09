@@ -323,7 +323,7 @@ end
 function GVG.Shape:delete()
 	self:removeFromParents()
 	GVG.elements[self.uuid] = nil
-	GVG.ids[self.id] = nil
+	if self.id then GVG.ids[self.id] = nil end
 	if self.shader then self.shader:release() end
 	if self.mesh then self.mesh:release() end
 end
@@ -805,6 +805,8 @@ function GVG.Image:init(img, x, y, r, s, visible, id)
 				end
 				--print(k, v)
 			end
+			tmps:createMesh()
+			tmps:compileShader()
 			if #groupStack > 0 then
 				groupStack[#groupStack]:add(tmps)
 			else
