@@ -1002,6 +1002,7 @@ end
 
 function GVG.Text:setText(str)
 	self.text = str
+	if self.bitmapProperties then self.bitmapProperties.img = nil end
 end
 
 local ts = love.graphics.newShader([[
@@ -1027,43 +1028,32 @@ function GVG.Text:draw(x, y, r, s, visible)
 	end
 
 	local dx, dy = x ~= nil and x or self.x, y ~= nil and y or self.y
-	local dr = r ~= nil and r or self.r
+	local dr = self.lockUpright and 0 or (r ~= nil and r or self.r)
 	local ds = s ~= nil and s or self.s
-
-	if self.lockUpright then
-		dr = 0
-	end
 
 	local ls = love.graphics.getShader()
 	local lc = {love.graphics.getColor()}
 
 	if self.mode == "bitmap" or self.mode == "bitmapsdf" then
-		if not self.bitmapProperties then
-			self.bitmapProperties = {}
-		end
-		if not self.bitmapProperties.baseSize then
-			self.bitmapProperties.baseSize = self.size
-		end
+		self.bitmapProperties = self.bitmapProperties or {}
+		self.bitmapProperties.baseSize = self.bitmapProperties.baseSize or self.size
 		if not self.bitmapProperties.img then
-			self.bitmapProperties.img = love.graphics.newText(love.graphics.newFont(self.bitmapProperties.baseSize), self.text)
+			if self.font then
+				self.bitmapProperties.img = love.graphics.newText(love.graphics.newFont(self.font, self.bitmapProperties.baseSize), self.text)
+			else
+				self.bitmapProperties.img = love.graphics.newText(love.graphics.newFont(self.bitmapProperties.baseSize), self.text)
+			end
 		end
 
 		local nx, ny = GVG.worldToScreen(dx, dy)
 
 		local sf = (ds * self.size) / self.bitmapProperties.baseSize
-		local ox, oy = 0, 0
-		if self.alignX == "center" then
-			ox = -(self.bitmapProperties.img:getWidth() * sf * 0.5)
-		end
-		if self.alignY == "center" then
-			oy = -(self.bitmapProperties.img:getHeight() * sf * 0.5)
-		end
+		local ox = self.alignX == "center" and -(self.bitmapProperties.img:getWidth() * sf * 0.5) or 0
+		local oy = self.alignY == "center" and -(self.bitmapProperties.img:getHeight() * sf * 0.5) or 0
 		ox, oy = rotate(ox, oy, dr)
 		nx, ny = nx + ox, ny + oy
 
-		if self.snapToPixel then
-			nx, ny = math.floor(nx + 0.5), math.floor(ny + 0.5)
-		end
+		if self.snapToPixel then nx, ny = math.floor(nx + 0.5), math.floor(ny + 0.5) end
 		if self.mode == "bitmapsdf" then
 			ts:send("scl", math.max(sf, 1))
 			love.graphics.setShader(ts)
@@ -1072,35 +1062,25 @@ function GVG.Text:draw(x, y, r, s, visible)
 		love.graphics.setColor(self.color)
 		love.graphics.draw(self.bitmapProperties.img, nx, ny, dr, sf, sf)
 	elseif self.mode == "software" then
-		if not self.softwareProperties then
-			self.softwareProperties = {}
-		end
-		if self.softwareProperties.scaleCorrection == nil then
-			self.softwareProperties.scaleCorrection = true
-		end
+		self.softwareProperties = self.softwareProperties or {}
+		self.softwareProperties.scaleCorrection = self.softwareProperties.scaleCorrection or true
 		local nfs = math.max(math.floor(self.size * ds), 1)
 		if (not (self.softwareProperties.font or self.softwareProperties.fontSize)) or (nfs ~= self.softwareProperties.fontSize) then
-			self.softwareProperties.font = love.graphics.newFont(nfs, "none")
+			if self.font then
+				self.softwareProperties.font = love.graphics.newFont(self.font, nfs, "none")
+			else
+				self.softwareProperties.font = love.graphics.newFont(nfs, "none")
+			end
 			self.softwareProperties.fontSize = nfs
 		end
-		local sc = 1
-		if self.softwareProperties.scaleCorrection then
-			sc = (self.size * ds) / nfs
-		end
+		local sc = self.softwareProperties.scaleCorrection and (self.size * ds) / nfs or 1
 		love.graphics.setFont(self.softwareProperties.font)
 		local nx, ny = GVG.worldToScreen(dx, dy)
-		local ox, oy = 0, 0
-		if self.alignX == "center" then
-			ox = -(self.softwareProperties.font:getWidth(self.text) * sc * 0.5)
-		end
-		if self.alignY == "center" then
-			oy = -(self.softwareProperties.font:getHeight() * sc * 0.5)
-		end
+		local ox = self.alignX == "center" and -(self.softwareProperties.font:getWidth(self.text) * sc * 0.5) or 0
+		local oy = self.alignY == "center" and -(self.softwareProperties.font:getHeight() * sc * 0.5) or 0
 		ox, oy = rotate(ox, oy, dr)
 		nx, ny = nx + ox, ny + oy
-		if self.snapToPixel then
-			nx, ny = math.floor(nx + 0.5), math.floor(ny + 0.5)
-		end
+		if self.snapToPixel then nx, ny = math.floor(nx + 0.5), math.floor(ny + 0.5) end
 		love.graphics.setColor(self.color)
 		love.graphics.print(self.text, nx, ny, dr, sc, sc)
 	end
